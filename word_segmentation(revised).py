@@ -122,10 +122,10 @@ pfor = float(for_words.pop()/len(for_words))
 #pback = percent of back_words
 pback = float(back_words.pop()/len(back_words))
 
-#if(pfor>pback):
-print(for_words)
-#else:
-print(back_words) 
+if(pfor>pback):
+    print(for_words)
+else:
+    print(back_words) 
     
 
 
