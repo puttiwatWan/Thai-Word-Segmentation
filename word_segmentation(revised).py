@@ -18,11 +18,10 @@ def is_token_before_consonant(ch):
        return True
     else: return False
 
+dict = set(line.strip() for line in open('dictionary.txt',encoding="utf-8"))
 
 sentence = input("Enter your string:")
 sentence = sentence.replace(" ", "")
-
-dict = set(line.strip() for line in open('dictionary.txt',encoding="utf-8"))
 
 ######## start #############
 
@@ -71,11 +70,11 @@ def search(text,option):
             for x in range(start,stop,step):
                 cnt+=1
                 if(option==1):#---forward
-                    rim = len(text)    #check if index=last
+                    rim = len(text)-1    #check if index=last
                     after = x+1             #index for is_token_after_consonant(text[after])
                     before = x              #index for is_token_before_consonant(text[before])
                 else:#------------backward
-                    rim = -1                #check if index=first
+                    rim = 0                #check if index=first
                     after = x
                     before = x-1
                 if(x==rim or ((not is_token_after_consonant(text[after])) and not is_token_before_consonant(text[before]))):
