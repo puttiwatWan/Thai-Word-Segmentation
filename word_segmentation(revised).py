@@ -105,7 +105,7 @@ def search(text,option):
                     add=1
                 else:
                     add=-1
-                while(True):
+                while(True): #for grouping the number together
                     if(edge!=rim and is_number(text[edge+add])):
                             edge+=add
                     else:
