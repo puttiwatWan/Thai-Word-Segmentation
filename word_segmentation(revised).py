@@ -130,9 +130,6 @@ def search(text,option):
     words.append(count)
     return words
 
-def getPercent(array,found):
-    return found/len(array)
-
 for_words = search(sentence,1)
 back_words = search(sentence,2)
 
