@@ -54,8 +54,9 @@ def search(text,option):
     else:
         return "Invalid Option"
     
-    while(True): #------------------start while-------------------------------------
-        for x in range(start,stop,step): #search for word
+    while(True): #------------------start search loop-------------------------------------
+        #1=============search for available word===========
+        for x in range(start,stop,step): 
             if(option==1):#---forward
                 temp += text[x]
                 rim = len(text)-1    #check if index=last
@@ -74,6 +75,8 @@ def search(text,option):
                 if(temp in dict):
                     edge = x
                     flag = True
+        #1============end search word============
+        #2================append word to list==============
         if(not flag):   #word not found
             cnt=0       #count how many letters(index) are in trash
             #check for adjacent vowels and tone marks
@@ -116,7 +119,8 @@ def search(text,option):
             else:#------------backward
                 words.append(text[edge:start+1])
                 start = edge-1
-        #----check if all chars are checked-----
+        #2=============end append======================
+        #3=========check if all chars are checked==========
         if(start-stop==0): #start reaches stop index
             #append the non-word string(if any)
             if(trash != ""): words.append(trash) 
@@ -124,7 +128,8 @@ def search(text,option):
         else:
             flag=False
         temp=""
-    #----------------------------------------end while----------------------
+        #3=================end check======================
+    #----------------------------------------end search loop----------------------
     if(option==2): words.reverse()
     #append number of words found in dict to last index
     words.append(count)
@@ -142,6 +147,3 @@ if(pfor>pback):
     print(for_words)
 else:
     print(back_words) 
-    
-
-
