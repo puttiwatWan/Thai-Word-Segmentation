@@ -18,6 +18,11 @@ def is_token_before_consonant(ch):
        return True
     else: return False
 
+def is_number(ch):
+    if((ord(ch) >= 48 and ord(ch) <= 57) or ord(ch)==44 or ord(ch)==46):
+       return True
+    else: return False
+
 
 sentence = input("Enter your string:")
 sentence = sentence.replace(" ", "")
@@ -62,10 +67,14 @@ def search(text,option):
                 after = x
                 before = x-1
             if(x==rim or ((not is_token_after_consonant(text[after])) and not is_token_before_consonant(text[before]))):
+                if(is_number(text[start])):
+                    edge = x
+                    flag = True
+                    break
                 if(temp in dict):
                     edge = x
-                    flag = True    
-        if(not flag):   #if no word is found
+                    flag = True
+        if(not flag):   #word not found
             cnt=0       #count how many letters(index) are in trash
             #check for adjacent vowels and tone marks
             for x in range(start,stop,step):
@@ -91,7 +100,17 @@ def search(text,option):
                 words.append(trash) 
                 trash=""
             count+=1    #count for words found in dict
-            if(option==1):#---forward
+            if(is_number(text[edge])):
+                if(option==1):
+                    add=1
+                else:
+                    add=-1
+                while(True):
+                    if(edge!=rim and is_number(text[edge+add])):
+                            edge+=add
+                    else:
+                        break
+            if(option==1):
                 words.append(text[start:edge+1])
                 start = edge+1
             else:#------------backward
