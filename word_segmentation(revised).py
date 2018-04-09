@@ -102,7 +102,7 @@ def search(text,option):
                     if trash[i]==" ":
                         spaceIndex.append(i);
                 begin=0     #where to begin append trash into words
-                for n in range(len(spaceIndex)):
+                for n in range(len(spaceIndex)): #split trash into words by using space
                     if trash[begin:spaceIndex[n]]!="":
                         words.append(trash[begin:spaceIndex[n]])
                     if spaceIndex[n]==spaceIndex[n-1]+1:
@@ -141,7 +141,7 @@ def search(text,option):
                     if trash[i]==" ":
                         spaceIndex.append(i);
                 begin=0     #where to begin append trash into words
-                for n in range(len(spaceIndex)):
+                for n in range(len(spaceIndex)): #split trash into words by using space
                     if trash[begin:spaceIndex[n]]!="":
                         words.append(trash[begin:spaceIndex[n]])
                     if spaceIndex[n]==spaceIndex[n-1]+1:
