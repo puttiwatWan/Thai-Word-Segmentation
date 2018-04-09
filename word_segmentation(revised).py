@@ -4,22 +4,22 @@ print("Array-izing dictionary")
 def is_consonant(ch):
     if(ord(ch) >= 3585 and ord(ch) <= 3630):
        return True
-    else: return False
+    return False
 
 def is_token_after_consonant(ch):
     if((ord(ch) >= 3632 and ord(ch) <= 3642) or ord(ch)==3653 or (ord(ch)>=3655 and ord(ch)<=3662)):
        return True
-    else: return False
+    return False
 
 def is_token_before_consonant(ch):
     if(ord(ch) >= 3648 and ord(ch) <= 3652):
        return True
-    else: return False
+    return False
 
 def is_number(ch):
     if((ord(ch) >= 48 and ord(ch) <= 57) or ord(ch)==44 or ord(ch)==46):
        return True
-    else: return False
+    return False
 
 sentence = input("Enter your string:")
 dict = set(line.strip() for line in open('dictionary.txt',encoding="utf-8"))
@@ -95,7 +95,22 @@ def search(text,option):
                 start-=cnt
         else:  ###word is found
             if(trash != ""): ##append the non-word string
-                words.append(trash) 
+                if(option==2):
+                    trash = trash[::-1]
+                spaceIndex=[] #keep indices of the space(" ")
+                for i in range(0,len(trash),1):
+                    if trash[i]==" ":
+                        spaceIndex.append(i);
+                begin=0     #where to begin append trash into words
+                for n in range(len(spaceIndex)):
+                    if trash[begin:spaceIndex[n]]!="":
+                        words.append(trash[begin:spaceIndex[n]])
+                    if spaceIndex[n]==spaceIndex[n-1]+1:
+                        words[len(words)-1]+=" "
+                    else:
+                        words.append(trash[spaceIndex[n]])
+                    begin=spaceIndex[n]+1
+                words.append(trash[begin:])
                 trash=""
             count+=1    #count for words found in dict
             if(is_number(text[edge])):
@@ -118,7 +133,24 @@ def search(text,option):
         #3=========check if all chars are checked==========
         if(start-stop==0): #start reaches stop index
             #append the non-word string(if any)
-            if(trash != ""): words.append(trash) 
+            if trash!="":
+                if(option==2):
+                    trash = trash[::-1]
+                spaceIndex=[] #keep indices of the space(" ")
+                for i in range(0,len(trash),1):
+                    if trash[i]==" ":
+                        spaceIndex.append(i);
+                begin=0     #where to begin append trash into words
+                for n in range(len(spaceIndex)):
+                    if trash[begin:spaceIndex[n]]!="":
+                        words.append(trash[begin:spaceIndex[n]])
+                    if spaceIndex[n]==spaceIndex[n-1]+1:
+                        words[len(words)-1]+=" "
+                    else:
+                        words.append(trash[spaceIndex[n]])
+                    begin=spaceIndex[n]+1
+                words.append(trash[begin:])
+                trash=""
             break
         else:
             flag=False
@@ -130,15 +162,18 @@ def search(text,option):
     words.append(count)
     return words
 
-for_words = search(sentence,1)
-back_words = search(sentence,2)
+if sentence:
+    for_words = search(sentence,1)
+    back_words = search(sentence,2)
 
-#pfor = percent of for_words
-pfor = float(for_words.pop()/len(for_words))
-#pback = percent of back_words
-pback = float(back_words.pop()/len(back_words))
+    #pfor = percent of for_words
+    pfor = float(for_words.pop()/len(for_words))
+    #pback = percent of back_words
+    pback = float(back_words.pop()/len(back_words))
 
-if(pfor>pback):
-    print(for_words)
+    if(pfor>pback):
+        print(for_words)
+    else:
+        print(back_words)
 else:
-    print(back_words) 
+    print("No input")
