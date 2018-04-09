@@ -39,10 +39,6 @@ def search(text,option):
     flag = False    #true = word found
     count=0         #number of words in array
     temp = ""
-<<<<<<< HEAD
-    spaceFlag = False
-=======
->>>>>>> 87cf01502960aab9aac959ef2187ff3981f74b6c
     
     start=0 #start index
     stop=0  #stop index
