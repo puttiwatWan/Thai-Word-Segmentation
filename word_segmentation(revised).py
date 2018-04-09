@@ -1,5 +1,3 @@
-import unicodedata as u
-
 print("Importing Dictionary")
 print("Array-izing dictionary")
 
@@ -23,23 +21,23 @@ def is_number(ch):
        return True
     else: return False
 
-
 sentence = input("Enter your string:")
-sentence = sentence.replace(" ", "")
-
 dict = set(line.strip() for line in open('dictionary.txt',encoding="utf-8"))
 
 ######## start #############
 
-def search(text,option):
+def search(phrase,option):
     #option: 1=forward, 2=backward
     words=[]        #create array output words
     trash = ""      #group of junk letters(can't form a word)
     edge = 0        #index of first char of word(forward) / last char of word(backward)
     flag = False    #true = word found
     count=0         #number of words in array
-    temp = ""
-    
+    temp = phrase.pop([0])
+    text = ""
+    if(len(phrase)>1):
+        for s in phrase:
+            text+=" "+s
     start=0 #start index
     stop=0  #stop index
     step=0  #step
