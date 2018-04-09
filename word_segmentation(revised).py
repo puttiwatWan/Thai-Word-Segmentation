@@ -21,11 +21,6 @@ def is_number(ch):
        return True
     return False
 
-def is_space(ch):
-    if(ch==" "):
-        return True
-    return False
-
 sentence = input("Enter your string:")
 dict = set(line.strip() for line in open('dictionary.txt',encoding="utf-8"))
 
@@ -167,15 +162,18 @@ def search(text,option):
     words.append(count)
     return words
 
-for_words = search(sentence,1)
-back_words = search(sentence,2)
+if sentence:
+    for_words = search(sentence,1)
+    back_words = search(sentence,2)
 
-#pfor = percent of for_words
-pfor = float(for_words.pop()/len(for_words))
-#pback = percent of back_words
-pback = float(back_words.pop()/len(back_words))
+    #pfor = percent of for_words
+    pfor = float(for_words.pop()/len(for_words))
+    #pback = percent of back_words
+    pback = float(back_words.pop()/len(back_words))
 
-if(pfor>pback):
-    print(for_words)
+    if(pfor>pback):
+        print(for_words)
+    else:
+        print(back_words)
 else:
-    print(back_words)
+    print("No input")
