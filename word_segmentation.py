@@ -172,8 +172,10 @@ if sentence:
     pback = float(back_words.pop()/len(back_words))
 
     if(pfor>pback):
-        print(for_words)
+        select = for_words
     else:
-        print(back_words)
+        select = back_words
+    for i in select:
+        print(i,end="/")
 else:
     print("No input")
